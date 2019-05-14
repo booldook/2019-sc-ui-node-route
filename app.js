@@ -56,15 +56,16 @@ app.get('/page', (req, res) => {
 			<div class="jumbotron">
 				<h2>도서목록</h2>
 			</div>
-			<ul class="navis flex pa">`;
+			<ul class="navis">`;
 	for(var i in books) {	
-		if(now == i) html += `<li class="navi navi_sel">${books[i].title}</li>`;
-		else html += `<li class="navi">${books[i].title}</li>`;
+		if(now == i) html += `<li class="navi navi_sel" onclick="loc(${(Number(i)+1)});">${books[i].title}</li>`;
+		else html += `<li class="navi" onclick="loc(${(Number(i)+1)});">${books[i].title}</li>`;
 	}
 	html+= `</ul>`;
-	if(now >= 0 && now <= 3) html+= `<div class="conts"><h5>${books[now].cont}</h5></div>
-		</div>
-		<script src="/js/score_in.js"></script>
+	if(now >= 0 && now <= 3) html+= `
+	<div class="conts pa bor-a radius mt"><h5>${books[now].cont}</h5></div>`;
+	html+= `</div>
+		<script src="/js/book.js"></script>
 	</body>
 	</html>`;
 	res.send(html);
