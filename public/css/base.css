@@ -1,0 +1,149 @@
+/* font-family: 'Playfair Display', serif; */
+/* @import url('https://fonts.googleapis.com/css?family=Playfair+Display'); */
+
+/* font-family: 'PT Sans', sans-serif; */
+/* @import url('https://fonts.googleapis.com/css?family=PT+Sans'); */
+
+/***** 초기화 / Normalize *****/
+html, body {margin:0; padding:0; font-size:16px; line-height: 1.15; color:#222; 
+	box-sizing: border-box; height: 100%;}
+p, div, ol, ul, li, h1, h2, h3, h4, h5, h6, header, footer, nav, article, aside, summary, main, details {margin:0; padding:0; box-sizing: border-box;}
+ul, ol, li {list-style: none;}
+form, input, select, button, span {box-sizing: border-box;}
+button {border: none;}
+
+/***** 공통설정 *****/
+.clear:after {content:''; display: block; clear:both;}
+.img {width: 100%;}
+.strong-bg {display: inline-block; padding: 0 0.5rem; background-color: #111; color: #f8f8f8;}
+.fl {float: left;}
+.fr {float: right;}
+.abs {position: absolute;}
+.rel {position: relative;}
+.crel {position: relative; left: 50%; transform: translateX(-50%);}
+.fix {position: fixed;}
+.tc {text-align: center;}
+.tl {text-align: left;}
+.tr {text-align: right;}
+.inline-b {display: inline-block;}
+.inline {display: inline;}
+.block {display:block;}
+.none {display: none;}
+.pointer {cursor:pointer;}
+.hover:hover {opacity: 0.8;}
+.hover-r {opacity: 0.8;}
+.hover-r:hover {opacity: 1;}
+.gap {flex: 1 1;}
+
+/***** Form 요소 *****/
+.readonly {background-color: transparent !important;}
+.ins {padding: 9px; border: 1px solid #ccc; border-radius: 3px; transform: translateY(2px);}
+/* .ins:focus {outline-color: transparent;} */
+
+
+/***** 폰트설정 *****/
+.font-pf {font-family: "Playfair Display";}
+.font-pt {font-family: 'PT Sans', sans-serif;}
+
+/***** border *****/
+.bor-a {border: 1px solid #ccc;}
+.bor-t {border-top: 1px solid #ccc;}
+.bor-l {border-left: 1px solid #ccc;}
+.bor-r {border-right: 1px solid #ccc;}
+.bor-b {border-bottom: 1px solid #ccc;}
+.radius {border-radius: 3px;}
+
+/***** flex *****/
+.flex {display: flex;}
+.flex-col {flex-direction: column;}
+.flex-ct {justify-content: center;}
+.flex-st {justify-content: flex-start;}
+.flex-ed {justify-content: flex-end;}
+.flex-sa {justify-content: space-around;}
+.flex-sb {justify-content: space-between;}
+.flex-vct {align-items: center;}
+.flex-vst {align-items: flex-start;}
+.flex-ved {align-items: flex-end;}
+
+.flex-g {flex-grow: 1;}
+.flex-ng {flex-grow: 0;}
+.flex-s {flex-shrink: 1;}
+.flex-ns {flex-shrink: 0;}
+.flex-b1 {flex-basis: 10%;}
+.flex-b2 {flex-basis: 20%;}
+.flex-b3 {flex-basis: 30%;}
+.flex-b4 {flex-basis: 40%;}
+.flex-b5 {flex-basis: 50%;}
+.flex-b6 {flex-basis: 60%;}
+.flex-b7 {flex-basis: 70%;}
+.flex-b8 {flex-basis: 80%;}
+.flex-b9 {flex-basis: 90%;}
+.flex-b0 {flex-basis: 100%;}
+
+/***** 마진/패딩 *****/
+.mt {margin-top: 1rem;}
+.ml {margin-left: 1rem;}
+.mr {margin-right: 1rem;}
+.mb {margin-bottom: 1rem;}
+.ma {margin: 1rem;}
+
+.mt_half {margin-top: 0.5rem;}
+.ml_half {margin-left: 0.5rem;}
+.mr_half {margin-right: 0.5rem;}
+.mb_half {margin-bottom: 0.5rem;}
+.ma_half {margin: 0.5rem;}
+
+.mt2 {margin-top: 2rem;}
+.ml2 {margin-left: 2rem;}
+.mr2 {margin-right: 2rem;}
+.mb2 {margin-bottom: 2rem;}
+.ma2 {margin: 2rem;}
+
+.mt3 {margin-top: 3rem;}
+.ml3 {margin-left: 3rem;}
+.mr3 {margin-right: 3rem;}
+.mb3 {margin-bottom: 3rem;}
+.ma3 {margin: 3rem;}
+
+.pt {padding-top: 1rem;}
+.pl {padding-left: 1rem;}
+.pr {padding-right: 1rem;}
+.pb {padding-bottom: 1rem;}
+.pa {padding: 1rem;}
+
+.pt_half {padding-top: 0.5rem;}
+.pl_half {padding-left: 0.5rem;}
+.pr_half {padding-right: 0.5rem;}
+.pb_half {padding-bottom: 0.5rem;}
+.pa_half {padding: 0.5rem;}
+
+.pt2 {padding-top: 2rem;}
+.pl2 {padding-left: 2rem;}
+.pr2 {padding-right: 2rem;}
+.pb2 {padding-bottom: 2rem;}
+.pa2 {padding: 2rem;}
+
+.pt3 {padding-top: 3rem;}
+.pl3 {padding-left: 3rem;}
+.pr3 {padding-right: 3rem;}
+.pb3 {padding-bottom: 3rem;}
+.pa3 {padding: 3rem;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
