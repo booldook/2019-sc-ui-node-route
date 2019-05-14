@@ -62,8 +62,7 @@ app.get('/page', (req, res) => {
 		else html += `<li class="navi" onclick="loc(${(Number(i)+1)});">${books[i].title}</li>`;
 	}
 	html+= `</ul>`;
-	if(now >= 0 && now <= 3) html+= `
-	<div class="conts pa bor-a radius mt"><h5>${books[now].cont}</h5></div>`;
+	if(now >= 0 && now <= 3) html+= `<div class="conts pa bor-a radius mt"><h5>${books[now].cont}</h5></div>`;
 	html+= `</div>
 		<script src="/js/book.js"></script>
 	</body>
