@@ -5,8 +5,38 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>성적관리 프로그램</title>
+	<link rel="stylesheet" href="../css/fa.min.css">
+	<link rel="stylesheet" href="../css/animate.css">
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/base.css">
+	<link rel="stylesheet" href="../css/score_in.css">
+	<script src="../js/jquery-3.3.1.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/anime.min.js"></script>
+	<script src="../js/wow.min.js"></script>
+	<script src="../js/util.js"></script>
 </head>
 <body>
-	
+	<div class="container">
+		<div class="jumbotron">
+			<h2>성적관리 프로그램</h2>
+		</div>
+		<form action="/score_save" method="get">
+			<div><h3>성적입력</h3></div>
+			<ul class="form-group">
+				<li>
+					<input type="text" name="uname" class="form-control" placeholder="학생 이름">
+				</li>
+				<li>
+					<input type="number" name="kor" class="form-control" placeholder="국어">
+				</li>
+				<li>
+					<button type="submit" class="btn btn-primary">저장</button>
+					<button type="reset" class="btn btn-danger">재작성</button>
+				</li>
+			</ul>
+		</form>
+	</div>
+	<script src="../js/score_in.js"></script>
 </body>
 </html>
