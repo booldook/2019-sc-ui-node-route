@@ -7,6 +7,9 @@ app.listen(3000, () => {
 	log('Connected 3000 port');
 });
 
+// 셋팅
+app.locals.pretty = true;	//클라이언트가 response로 전달받는 결과태그를 정리해 준다.
+
 // Router 구현
 app.use(express.static('public'));	//Static 요청 처리
 app.get('/get_test', (req, res) => {
@@ -64,6 +67,44 @@ app.get('/page', (req, res) => {
 	html+= `</ul>`;
 	if(now >= 0 && now <= 3) html+= `<div class="conts pa bor-a radius mt"><h5>${books[now].cont}</h5></div>`;
 	html+= `</div>
+		<script src="/js/book.js"></script>
+	</body>
+	</html>`;
+	res.send(html);
+});
+
+app.get('/test', (req, res) => {
+	var title = "테스트 페이지";
+	var greeting = "안녕하세요~";
+	var books = [
+		{title: "별주부전", cont: "용왕이 나의 간을 노리고..."},
+		{title: "홍길동전", cont: "아버지를 아버지라..."},
+		{title: "구운몽전", cont: "한여름밤에 꿈을 꿨는데..."},
+		{title: "춘향전", cont: "변사또 이놈이..."}
+	];
+	log(books[2].cont);
+	var html = `
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>${title}</title>
+		<link rel="stylesheet" href="/css/fa.min.css">
+		<link rel="stylesheet" href="/css/animate.css">
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/css/base.css">
+	</head>
+	<body>
+		<div class="container">
+			<div class="jumbotron">
+				<h2>${greeting}</h2>
+			</div>
+		</div>
+		<script>
+		console.log("${books[1].cont}");
+		</script>
 		<script src="/js/book.js"></script>
 	</body>
 	</html>`;
