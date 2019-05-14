@@ -21,7 +21,7 @@
 		<div class="jumbotron">
 			<h2>성적관리 프로그램</h2>
 		</div>
-		<form action="/score_save" method="get">
+		<form action="/score_save" method="post">
 			<div><h3>성적입력</h3></div>
 			<ul class="form-group">
 				<li>
@@ -31,7 +31,8 @@
 					<input type="number" name="kor" class="form-control" placeholder="국어">
 				</li>
 				<li>
-					<button type="submit" class="btn btn-primary">저장</button>
+					<!-- <button type="submit" class="btn btn-primary">저장</button> -->
+					<button type="button" class="btn btn-primary" onclick="send(this.form);">저장</button>
 					<button type="reset" class="btn btn-danger">재작성</button>
 				</li>
 			</ul>
