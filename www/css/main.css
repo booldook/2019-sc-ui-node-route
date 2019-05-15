@@ -1,0 +1,109 @@
+/*
+반응형 : 크기가 제각각인 모든 디바이스에서 웹사이트가 최적화된 경험을 제공한다.
+1. 가급적 px(고정단위)를 제거한다.
+	- rem/em/vw/vh/% (가변단위)를 주로 사용한다.
+2. rem은 무엇인가?
+	- body의 폰트사이즈를 1rem이라 한다.
+	- 기준이 16 px일때
+		0.75rem 	: 12 px
+		0.875rem 	: 14 px
+		1rem 			: 16 px
+		1.125rem 	: 18 px
+		1.25rem 	: 20 px
+
+		현재문서에서...
+		4px		: 0.25rem
+		8px		: 0.5rem
+		10px 	: 0.625rem
+		12px 	:	0.75rem
+		16px	:	1rem
+		24px	: 1.5rem
+		50px	:	3rem
+		100px	:	6rem
+*/
+/***** 공통사항 *****/
+.wrap {width:100%; max-width:1400px; margin:auto;}
+.main_tit {padding: 0.75rem 0; border-bottom: 1px solid #999;}
+
+/***** tops *****/
+.tops {width: 100%; padding: 0.5rem 1rem; background-color:#fff;
+	box-shadow: 0 0 0.625rem rgba(0,0,0,0.4); letter-spacing: 0.25rem; position: fixed; top: 0; left: 0; z-index: 9999;}
+.logo {float: left; padding: 0.75rem; cursor: pointer;}
+.logo:hover {background-color: #ccc;}
+.logo > span {font-weight: bold; margin-right:0.5rem;}
+.navs {float: right;}
+.nav {float: left; padding: 0.75rem 1.125rem; cursor: pointer;}
+.nav:hover {background-color: #ccc;}
+
+/***** bans *****/
+.bans {position: relative; margin-top: 3.5rem;}
+.ban_tit {font-size: 2rem; letter-spacing: 0.25rem; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); color: #fff;}
+.ban_tit > span {font-weight: bold; margin-right:1rem; background-color: rgba(0,0,0,0.5); padding:0.5rem 0.75rem;}
+
+/***** prjs *****/
+.prjs {width: 100%; margin: 6rem auto;}
+.prjs > ul {margin-top: 3rem; width: 101%; margin-left: -0.5%;}
+.prj {width: 24%; margin: 0.5%; float: left; position: relative;}
+.prj:hover {opacity: 0.9;}
+.prj > .sub_tit {background-color: rgba(0,0,0,0.9); color:#fff; padding:0.5rem; position: absolute; top: 0; left: 0;}
+
+/***** abouts *****/
+.abouts {width: 100%; margin: 6rem auto;}
+.about_cont {margin: 1.5rem 0;}
+.abouts > ul {margin-top: 3rem; width: 101%; margin-left: -0.5%;}
+.member {width: 24%; margin: 0.5%; float: left;}
+.member_name {margin: 1rem 0;}
+.member_job {margin: 1rem 0; color:#999;}
+.member_cont {margin: 1rem 0;}
+.bt_contact {padding: 0.75rem; background: #eee; text-align: center; cursor: pointer;}
+.bt_contact:hover {background-color: #333; color:#fff;}
+.member > div {overflow: hidden;}
+.member > div > img {transition: transform 1s; }
+.member > div > img:hover {transform: scale(1.1);}
+
+/***** contacts *****/
+.contacts {width: 100%; margin: 6rem auto;}
+.contact_cont {margin: 1.5rem 0;}
+li.contact {margin: 0.5rem 0;}
+li.contact > input {width: 100%; padding: 0.75rem; border: 1px solid #ccc;}
+.contact:last-child {margin-top: 1.5rem;}
+.bt_send {padding: 0.75rem 1rem; background-color: #111; color: #f8f8f8; cursor: pointer;}
+.bt_send:hover {background-color: #ccc; color: #111;}
+.loc {margin-top: 1.5rem;}
+
+/***** footer *****/
+footer {width: 100%; margin-top: 6rem; background-color: #111; text-align: center; color: #f8f8f8; padding: 2rem 0;}
+
+
+
+/***** 반응형 처리 *****/
+
+/***** 769px ~ 1024px *****/
+@media screen and (max-width: 1024px) {
+	html, body {font-size: 18px;}
+	.wrap {width:96%;}
+	.ban_tit {font-size:3vw;}
+}
+
+/***** 481px ~ 768px *****/
+@media screen and (max-width: 768px) {
+	html, body {font-size: 20px;}
+	.prj {width: 49%;}
+	.member {width: 49%;}
+	.ban_tit {font-size:4vw;}
+}
+
+/***** 321px ~ 480px *****/
+@media screen and (max-width: 480px) {
+	html, body {font-size: 22px;}
+	.navs {display: none;}
+	.prj {width: 99%;}
+	.member {width: 99%;}
+	.ban_tit {font-size:5vw;}
+}
+
+/***** 0 ~ 320px *****/
+@media screen and (max-width: 320px) {
+	html, body {font-size: 24px;}
+	.ban_tit {font-size:6vw;}
+}

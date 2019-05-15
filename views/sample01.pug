@@ -1,0 +1,17 @@
+doctype html
+html
+	head
+		title 샘플01
+		meta(charset="utf-8")
+		link(href="/css/bootstrap.min.css", rel="stylesheet")
+	body
+		div(class="container")
+			h1(class="jumbotron") PUG를 이용한 웹페이지 입니다.
+			h3(class="radius mt bor-a pa")= bookTitle
+			p
+				- var site1 = "https://www.naver.com"
+				- var site2 = "https://www.daum.net"
+				a(href=site1, target="_blank") 네이버로 갑니다.
+				br
+				a(href=site2, target="_blank") 다음으로 갑니다.
+				

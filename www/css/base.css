@@ -1,0 +1,26 @@
+/* font-family: 'Playfair Display', serif; */
+/* @import url('https://fonts.googleapis.com/css?family=Playfair+Display'); */
+
+/* font-family: 'PT Sans', sans-serif; */
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+
+/***** 초기화 / Normalize *****/
+html, body {margin:0; padding:0; font-size:16px; color:#222; 
+	font-family: 'PT Sans', sans-serif; box-sizing: border-box;}
+p, div, ol, ul, li, h1, h2, h3, h4, h5, h6, header, footer, nav, article, aside, summary, main, details {margin:0; padding:0; box-sizing: border-box;}
+ul, ol, li {list-style: none;}
+form, input, select, button, span {box-sizing: border-box;}
+button {border: none;}
+
+/***** 공통설정 *****/
+.clear:after {content:''; display: block; clear:both;}
+.img {width: 100%;}
+
+/***** 폰트설정 *****/
+.font-pf {font-family: "Playfair Display";}
+.font-pt {font-family: 'PT Sans', sans-serif;}
+
+
+
+
+
