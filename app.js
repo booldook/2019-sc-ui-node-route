@@ -4,8 +4,8 @@ const log = console.log;	// console.log 참조
 
 // 서버 구동
 app.listen(3000, () => {
-	log('Connected 3000 port');
-});
+	log('Connected 3000 port http://127.0.0.1:3000');
+}); 
 
 // 셋팅
 app.locals.pretty = true;	//클라이언트가 response로 전달받는 결과태그를 정리해 준다.
@@ -74,6 +74,7 @@ app.get('/page', (req, res) => {
 });
 
 app.get('/test', (req, res) => {
+	var book = req.query.book;
 	var title = "테스트 페이지";
 	var greeting = "안녕하세요~";
 	var books = [
@@ -82,7 +83,6 @@ app.get('/test', (req, res) => {
 		{title: "구운몽전", cont: "한여름밤에 꿈을 꿨는데..."},
 		{title: "춘향전", cont: "변사또 이놈이..."}
 	];
-	log(books[2].cont);
 	var html = `
 	<!DOCTYPE html>
 	<html>
@@ -95,16 +95,31 @@ app.get('/test', (req, res) => {
 		<link rel="stylesheet" href="/css/animate.css">
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/css/base.css">
+		<style>
+		.sel {background-color: #222; color: #fff;}
+		</style>
 	</head>
 	<body>
 		<div class="container">
 			<div class="jumbotron">
 				<h2>${greeting}</h2>
 			</div>
+			<ul class="mt bor-a radius flex flex-ct tc">`;
+	//for(let i=0; i<books.length; i++) {
+	for(let i in books) {
+		if(book == i) {
+			html+= `<li class="flex-g flex-s pa pointer sel">${books[i].title}</li>`;
+		}
+		else {
+			html+= `<li class="flex-g flex-s pa pointer"><a href="/test?book=${i}">${books[i].title}</a></li>`;
+		}
+	}
+	html+= `
+			</ul>
+			<div class="mt bor-a radius pa2">
+				<h3></h3>
+			</div>
 		</div>
-		<script>
-		console.log("${books[1].cont}");
-		</script>
 		<script src="/js/book.js"></script>
 	</body>
 	</html>`;
