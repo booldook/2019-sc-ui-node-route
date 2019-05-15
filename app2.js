@@ -15,7 +15,8 @@ app.get("/book/:id", (req, res) => {
 	var books = ["묵향1", "묵향2", "묵향3", "묵향4", "묵향5"];
 	var id = req.params.id;
 	var vals = {
-		bookTitle: books[id]
+		books,
+		id
 	};
 	res.render('sample01', vals);
 });
