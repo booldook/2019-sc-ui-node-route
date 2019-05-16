@@ -17,7 +17,8 @@ app.get("/book/:id", (req, res) => {
 	var vals = {
 		docTitle: "도서 검색 시스템 입니다.",
 		cssName: "book",
-		logoFile: "logo.png",
+		jsName: "book",
+		logoFile: "/img/logo.png",
 		navs: books,
 		books,
 		id
