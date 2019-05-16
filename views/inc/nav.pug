@@ -2,6 +2,11 @@ div.tops
 	div.logos
 		img.logo(src=`${logoFile}`)
 	ul.navis
-		each nav in navs
-			li.navi= nav
+		//each item in books
+		//	li.navi= item.name
+		- for(var i=0; i<books.length; i++)
+			if i == id
+				li.navi.pointer.navi-sel(onclick=`location.href='/book/${i}'`)= books[i].name
+			else
+				li.navi.pointer(onclick=`location.href='/book/${i}'`)= books[i].name
 		

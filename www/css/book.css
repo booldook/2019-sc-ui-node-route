@@ -2,8 +2,10 @@
 .logos {margin: 1rem;}
 .navis {display: flex; justify-content: center; flex-wrap: wrap; padding: 1rem 0;  border-top: 1px solid #eee; border-bottom: 1px solid #eee;}
 .navi {padding: 0.5rem; margin: 0 0.5rem; border: 1px solid #666;}
+.navi:hover {background-color: #333; color: #fff;}
+.navi-sel {background-color: #333; color: #fff; border: 2px solid #999;}
 
-.conts {margin: 1rem 0; padding: 1rem; border: 1px solid #eee;}
+.conts {margin: 1rem 0; padding: 1rem; border: 1px solid #eee; min-height: 500px;}
 
 
 

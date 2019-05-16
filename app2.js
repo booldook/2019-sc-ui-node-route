@@ -12,14 +12,19 @@ app.set('view engine', 'pug');
 app.set('views', './views');
 
 app.get("/book/:id", (req, res) => {
-	var books = ["묵향1", "묵향2", "묵향3", "묵향4", "묵향5"];
+	var books = [
+		{name: "홍길동전", content: "아버지를 아버지라..."},
+		{name: "왕좌의게임", content: "유론이 죽다니..."},
+		{name: "춘향전", content: "변사또 이놈이..."},
+		{name: "별주부전", content: "토끼 간은 만병통치약~"},
+		{name: "구운몽전", content: "한여름밤의 꿈~"}
+	];
 	var id = req.params.id;
 	var vals = {
 		docTitle: "도서 검색 시스템 입니다.",
 		cssName: "book",
 		jsName: "book",
 		logoFile: "/img/logo.png",
-		navs: books,
 		books,
 		id
 	};
