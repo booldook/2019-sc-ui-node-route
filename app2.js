@@ -15,10 +15,14 @@ app.get("/book/:id", (req, res) => {
 	var books = ["묵향1", "묵향2", "묵향3", "묵향4", "묵향5"];
 	var id = req.params.id;
 	var vals = {
+		docTitle: "도서 검색 시스템 입니다.",
+		cssName: "book",
+		logoFile: "logo.png",
+		navs: books,
 		books,
 		id
 	};
-	res.render('sample01', vals);
+	res.render('book', vals);
 });
 
 /*

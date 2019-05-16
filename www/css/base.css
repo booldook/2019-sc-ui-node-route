@@ -129,6 +129,18 @@ button {border: none;}
 .pb3 {padding-bottom: 3rem;}
 .pa3 {padding: 3rem;}
 
+/* 백그라운드 */
+.bg-1 {background-color: #111; color: #f8f8f8;}
+.bg-3 {background-color: #333; color: #f8f8f8;}
+.bg-6 {background-color: #666; color: #f8f8f8;}
+.bg-9 {background-color: #999; color: #f8f8f8;}
+.bg-a {background-color: #aaa; color: #111;}
+.bg-b {background-color: #bbb; color: #111;}
+.bg-c {background-color: #ccc; color: #111;}
+.bg-d {background-color: #ddd; color: #111;}
+.bg-e {background-color: #eee; color: #111;}
+.bg-f {background-color: #f1f1f1; color: #111;}
+
 
 
 
