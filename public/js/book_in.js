@@ -52,4 +52,5 @@ $("#bt_save").click(function(){
 		summary.focus();
 		return false;
 	}
+	$f.submit();
 });
