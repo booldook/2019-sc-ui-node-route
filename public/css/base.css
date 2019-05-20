@@ -44,6 +44,8 @@ button {border: none;}
 /***** 폰트설정 *****/
 .font-pf {font-family: "Playfair Display";}
 .font-pt {font-family: 'PT Sans', sans-serif;}
+.red {color: red;}
+.blue {color: blue;}
 
 /***** border *****/
 .bor-a {border: 1px solid #ccc;}
