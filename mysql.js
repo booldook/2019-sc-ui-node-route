@@ -1,6 +1,7 @@
 // 서버구축
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 const db = require('./mysql_conn');
 const mysql = db.mysql;
 const conn = db.conn;
@@ -15,6 +16,7 @@ app.locals.pretty = true;
 app.set("view engine", "pug");
 app.set("views", "./views");
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended: false}));
 conn.connect();
 
 // ROUTER
@@ -24,7 +26,6 @@ app.get("/book/:id", (req, res) => {
 app.post("/admin/:method", (req, res) => {
 	var method = req.params.method;
 	if(method == "in") {
-		res.send("저장중");
-		console.log("데이터 받았어요~");
+		res.send("POST방식으로 잘 받았습니다. (" + req.body.title + ")");
 	}
 });
