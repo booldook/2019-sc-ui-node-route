@@ -1,4 +1,4 @@
-$("#wdate").datepicker();
+$("#sdate").datepicker();
 $("#bt_save").click(function(){
 	var $f = $(document.book_in);
 	var title = $("input[name='title']", $f);
@@ -8,7 +8,7 @@ $("#bt_save").click(function(){
 	isbn.push($("input[name='isbn_0']", $f));
 	isbn.push($("input[name='isbn_1']", $f));
 	isbn.push($("input[name='isbn_2']", $f));
-	var wdate = $("input[name='wdate']", $f);
+	var sdate = $("input[name='sdate']", $f);
 	var cnt = $("input[name='cnt']", $f);
 	var summary = $("textarea[name='summary']", $f);
 
@@ -42,9 +42,9 @@ $("#bt_save").click(function(){
 		isbn[2].focus();
 		return false;
 	}
-	if(wdate.val() == "") {
+	if(sdate.val() == "") {
 		alert("발행일을 입력하세요.");
-		wdate.focus();
+		sdate.focus();
 		return false;
 	}
 	if(summary.val() == "") {
