@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>관리자 - 도서입력</title>
+	<link rel="stylesheet" href="../css/fa.min.css">
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../jquery-ui-date/jquery-ui.min.css">
+	<link rel="stylesheet" href="../css/base.css">
+	<link rel="stylesheet" href="../css/book_in.css">
+	<script src="../js/jquery-3.3.1.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../jquery-ui-date/jquery-ui.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>
+				도서입력
+				<small>관리자 도서 입력 시스템</small>
+			</h1>
+		</div>
+		<table class="table table-bordered table-hover">
+			<tbody>
+				<tr>
+					<td>책제목</td>
+					<td class="form-inline">
+						<input type="text" name="title" class="form-control" placeholder="책제목을 입력하세요.">
+					</td>
+				</tr>
+				<tr>
+					<td>저자</td>
+					<td class="form-inline">
+						<input type="text" name="author" class="form-control" placeholder="저자를 입력하세요.">
+					</td>
+				</tr>
+				<tr>
+					<td>판매금액</td>
+					<td class="form-inline">
+						<input type="number" name="price" class="form-control"> 원
+					</td>
+				</tr>
+				<tr>
+					<td>ISBN</td>
+					<td class="form-inline">
+						<input type="number" name="isbn_0" class="form-control" maxlength="2"> - 
+						<input type="number" name="isbn_1" class="form-control" maxlength="4"> - 
+						<input type="number" name="isbn_2" class="form-control" maxlength="4">
+					</td>
+				</tr>
+				<tr>
+					<td>ISBN</td>
+					<td class="form-inline">
+						<input type="number" name="isbn_0" class="form-control" maxlength="2"> - 
+						<input type="number" name="isbn_1" class="form-control" maxlength="4"> - 
+						<input type="number" name="isbn_2" class="form-control" maxlength="4">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+<script src="../js/book_in.js"></script>
+</body>
+</html>
