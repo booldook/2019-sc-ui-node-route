@@ -14,6 +14,7 @@ $("#bt_save").click(function(){
 
 	if(title.val() == "") {
 		alert("책 제목을 입력하세요.");
+		title.focus();
 		return false;
 	}
 	if(author.val() == "") {
