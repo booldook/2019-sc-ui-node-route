@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,7 @@
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../jquery-ui-date/jquery-ui.min.js"></script>
 </head>
+
 <body>
 	<div class="container">
 		<div class="jumbotron">
@@ -22,69 +24,62 @@
 				<small>관리자 도서 입력 시스템</small>
 			</h1>
 		</div>
-		<table class="table table-bordered table-hover">
-			<tbody>
-				<tr>
-					<td>책제목</td>
-					<td class="form-inline">
-						<input type="text" name="title" class="form-control" placeholder="책제목을 입력하세요.">
-					</td>
-				</tr>
-				<tr>
-					<td>저자</td>
-					<td class="form-inline">
-						<input type="text" name="author" class="form-control" placeholder="저자를 입력하세요.">
-					</td>
-				</tr>
-				<tr>
-					<td>판매금액</td>
-					<td class="form-inline">
-						<input type="number" name="price" class="form-control"> 원
-					</td>
-				</tr>
-				<tr>
-					<td>ISBN</td>
-					<td class="form-inline">
-						<input type="number" name="isbn_0" class="form-control" maxlength="2"> - 
-						<input type="number" name="isbn_1" class="form-control" maxlength="4"> - 
-						<input type="number" name="isbn_2" class="form-control" maxlength="4">
-					</td>
-				</tr>
-				<tr>
-					<td>ISBN</td>
-					<td class="form-inline">
-						<input type="number" name="isbn_0" class="form-control" maxlength="2"> - 
-						<input type="number" name="isbn_1" class="form-control" maxlength="4"> - 
-						<input type="number" name="isbn_2" class="form-control" maxlength="4">
-					</td>
-				</tr>
-				<tr>
-					<td>발행일</td>
-					<td class="form-inline">
-						<input type="text" name="wdate" id="wdate" class="form-control">
-					</td>
-				</tr>
-				<tr>
-					<td>입고갯수</td>
-					<td class="form-inline">
-						<input type="number" name="cnt" class="form-control" value="10">
-					</td>
-				</tr>
-				<tr>
-					<td>요약정보</td>
-					<td class="form-inline">
-						<textarea name="summary" class="form-control"></textarea>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" class="tc">
-						<button type="button" class="btn btn-primary">저장</button>
-						<button type="reset" class="btn btn-danger">재작성</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+		<form action="/book/in" method="put" name="book_in">
+			<table class="table table-bordered table-hover">
+				<tbody>
+					<tr>
+						<td>책제목</td>
+						<td class="form-inline">
+							<input type="text" name="title" class="form-control" placeholder="책제목을 입력하세요.">
+						</td>
+					</tr>
+					<tr>
+						<td>저자</td>
+						<td class="form-inline">
+							<input type="text" name="author" class="form-control" placeholder="저자를 입력하세요.">
+						</td>
+					</tr>
+					<tr>
+						<td>판매금액</td>
+						<td class="form-inline">
+							<input type="number" name="price" class="form-control"> 원
+						</td>
+					</tr>
+					<tr>
+						<td>ISBN</td>
+						<td class="form-inline">
+							<input type="number" name="isbn_0" class="form-control in100" maxlength="2"> -
+							<input type="number" name="isbn_1" class="form-control in100" maxlength="4"> -
+							<input type="number" name="isbn_2" class="form-control in100" maxlength="4">
+						</td>
+					</tr>
+					<tr>
+						<td>발행일</td>
+						<td class="form-inline">
+							<input type="text" name="wdate" id="wdate" class="form-control">
+						</td>
+					</tr>
+					<tr>
+						<td>입고갯수</td>
+						<td class="form-inline">
+							<input type="number" name="cnt" class="form-control in100" value="10">
+						</td>
+					</tr>
+					<tr>
+						<td>요약정보</td>
+						<td>
+							<textarea name="summary" class="form-control"></textarea>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="tc pa">
+				<button type="button" id="bt_save" class="btn btn-primary">저장</button>
+				<button type="reset" class="btn btn-danger">재작성</button>
+			</div>
+		</form>
 	</div>
-<script src="../js/book_in.js"></script>
+	<script src="../js/book_in.js"></script>
 </body>
+
 </html>
