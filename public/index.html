@@ -23,6 +23,105 @@
 	</nav>
 	<div class="container mt">
 		<div class="jumbotron">
+			<h1>Node.js 정리</h1>
+		</div>
+		<div class="mt bor-a pa">
+			<table class="table">
+				<tbody>
+					<tr>
+						<td>설치</td>
+						<td>
+							1. node.js 설치(<a href="https://nodejs.org" target="_blank">https://nodejs.org</a>)<br>
+							2. 터미널 창에서 프로젝트 폴더로 이동(vscode에서는 폴더 열기 후 터미널창 열기)
+							<br>
+							3. npm init -y 실행 (package.json 생성)
+							<br>
+							4. npm install express --save-dev 
+							(node.js 프레임워크)
+							<br>
+							5. npm install pug --save-dev
+							(view engine)
+							<br>
+							6. npm install mysql --save-dev
+							(MySQL 서버 연동 미들웨어)
+							<br>
+							7. npm install http-errors --save-dev
+							(node 실행 중 에러 처리)
+							<br>
+							8. npm install morgan --save-dev
+							(node 실행 중 모든 작업내역 logger)
+							<br>
+							9. npm install multer --save-dev
+							(node에서 사용자의 파일 업로드)
+							<br>
+							10. npm install cookie-parser --save-dev
+							(node에서 쿠키 사용)
+						</td>
+					</tr>
+					<tr>
+						<td>개발</td>
+						<td>
+							1. app.js (실행파일) 생성 - 노드는 보통 하나의 파일을 쓴다.<br>
+							2. static(정적html, css 등)폴더 역할을 할 public 폴더를 생성<br>
+							- app.use("/", express.static("public"));
+							- app.use("/info", express.static("info"));
+							<br>
+							3. express 나 사용 할 미들웨어를 import(require) 시킨다
+							<div class="bor-a pa ma">
+								const express = require('express'); (express 모듈을 import)<br>
+								const <span class="bold blue">app</span> = express();<br>
+								const bodyParser = require('body-parser');<br>
+								const db = require('./mysql_conn');<br>
+								const mysql = db.mysql;<br>
+								const conn = db.conn;
+							</div>
+							4. 생성된 <span class="bold blue">app</span>을 초기화 한다
+							<div class="bor-a pa ma">
+<pre>
+app.listen(3000, ()=> {
+  console.log("서버시작");
+});
+</pre>
+								app.use("/", express.static("public"));	(정적 폴더 지정)<br>
+								app.set("view engine", "pug");	(view template engine 지정)<br>
+								app.set("views", "./views"); (view engine이 사용한 template 폴더 지정)
+							</div>
+							5. Route 개발 (get)
+							<div class="bor-a pa ma">
+<pre>
+app.get("/book/:page", (req, res) => {
+  //클라이언트의 요청사항
+  var id = req.queryString.id;
+  var page = req.params.page;
+	
+  //서버로부터의 응답사항
+  res.send("서버로부터 답장"); 
+  res.render("view", vals); // views/view.pug 에 js object 형태의 vals를 전달
+});
+</pre>
+							</div>
+							6. Route 개발 (post)
+							<div class="bor-a pa ma">
+<pre>
+const <b class="blue">bodyParser</b> = require('body-parser');
+app.use(bodyParser.urlencoded({ extended:false }));
+app.<b class="blue">post</b>("/book/", (req, res) => {
+  //클라이언트의 요청사항
+  var id = req.<b class="blue">body</b>.id;
+  var id = req.<b class="blue">body</b>.title;
+	
+  //서버로부터의 응답사항
+  res.send("서버로부터 답장"); 
+  res.render("view", vals); // views/view.pug 에 js object 형태의 vals를 전달
+});
+</pre>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="jumbotron mt">
 			<h1>Node.js 학습해야 할 내용</h1>
 		</div>
 		<div class="mt bor-a pa">
