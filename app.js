@@ -11,7 +11,7 @@ app.listen(3000, () => {
 app.locals.pretty = true;	//클라이언트가 response로 전달받는 결과태그를 정리해 준다.
 
 // Router 구현
-app.use(express.static('public'));	//Static 요청 처리
+app.use("/", express.static('public'));	//Static 요청 처리
 app.get('/get_test', (req, res) => {
 	res.send("<h1>Hello World</h1>");
 });

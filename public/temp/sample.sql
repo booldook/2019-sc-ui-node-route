@@ -50,3 +50,4 @@ SELECT * FROM book WHERE wdate > '1600-01-01' ORDER BY wdate ASC LIMIT 10, 10;
 
 
 
+INSERT INTO SET title='별주부전', author='거북이', price='20000', isbn='12-3456-7890', sdate='2019-05-21', wdate='2019-05-21 09:11:11', cnt=0, sellcnt=0, summary='거북이가 용왕을...', img=''
