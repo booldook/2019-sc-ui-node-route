@@ -17,25 +17,26 @@ app.set("view engine", "pug");
 app.set("views", "./views");
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
-
+conn.connect();
 // ROUTER
 app.get("/book", (req, res) => {
-	var sql = " SELECT * FROM book ORDER BY title ASC ";
-	conn.connect();
+	var sql = " SELECT * FROM book ORDER BY id DESC ";
 	conn.query(sql, (err, result, field) => {
 		if(err) {
 			console.log(err);
 			res.send("에러");
 		}
 		else {
-			var html = '';
-			for(var i in result) {
-				html += result[i].title + ', ';
+			var vals = {
+				cssName: "book",
+				jsName: "book",
+				smTit: "도서 목록 리스트",
+				items: result
 			}
-			res.send(html);
+			console.log(result);
+			res.render('book_list', vals);
 		}
 	});
-	conn.end();
 });
 
 
@@ -56,12 +57,10 @@ app.get("/test/", (req, res) => {
 	sellcnt = 0,
 	img 		= '/upload/cover/1905/hong.jpg',
 	summary = '아버지를 아버지라 부르지 못하고 형을 형이라 부르지 못하고';`;
-	conn.connect();
 	conn.query(sql, (err, result) => {
 		if(err) console.log(err);
 		else res.send(result);
 	});
-	conn.end();
 });
 app.post("/admin/:method", (req, res) => {
 	var method = req.params.method;
@@ -85,7 +84,6 @@ app.post("/admin/:method", (req, res) => {
 		*/
 		var sql = " INSERT INTO book SET title=?, author=?, price=?, isbn=?, sdate=?, cnt=?, sellcnt=?, wdate=?, img=?, summary=? ";
 		var values = [title, author, price, isbn, sdate, cnt, 0, wdate, '', summary];
-		conn.connect();
 		conn.query(sql, values, (err, result) => {
 			if(err) {
 				res.send("에러");
@@ -95,7 +93,6 @@ app.post("/admin/:method", (req, res) => {
 				res.send(result);
 			}
 		});
-		conn.end();
 	}
 });
 
@@ -117,3 +114,4 @@ function localDate(val) {
 	dt += zp(d.getSeconds());
 	return dt;
 }
+//conn.end();

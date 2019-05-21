@@ -1,0 +1,29 @@
+//- cssName, jsName, smTit
+doctype html
+html
+	head
+		include inc/header.pug
+	body
+		include inc/navs.pug
+		.container
+			include inc/title.pug
+			//본문 시작
+			table.table.table-bordered.table-striped.tc
+				thead
+					tr
+						th 도서번호
+						th 제목
+						th 저자
+						th 발행일
+						th 판매가
+				tbody
+					each item in items
+						tr
+							td=item.id
+							td.tl=item.title
+							td=item.author
+							td=item.sdate
+							td.tr=item.price
+			//본문 종료
+			include inc/footer.pug
+		script(src=`/js/${jsName}.js`)
