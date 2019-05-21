@@ -1,4 +1,11 @@
-$("#sdate").datepicker();
+$("#sdate").datepicker({
+	showOn: 'focus',
+	buttonText: "달력",
+	changeMonth: true,
+	changeYear: true,
+	yearRange: 'c-200:c+0',
+	showButtonPanel: true
+});
 $("#bt_save").click(function(){
 	var $f = $(document.book_in);
 	var title = $("input[name='title']", $f);
