@@ -90,7 +90,7 @@ app.post("/admin/:method", (req, res) => {
 				console.log(err);
 			}
 			else {
-				res.send(result);
+				res.redirect("/book");
 			}
 		});
 	}
