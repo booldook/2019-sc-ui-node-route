@@ -19,7 +19,28 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 
 // ROUTER
-app.get("/book/", (req, res) => {
+app.get("/book", (req, res) => {
+	var sql = " SELECT * FROM book ORDER BY title ASC ";
+	conn.connect();
+	conn.query(sql, (err, result, field) => {
+		if(err) {
+			console.log(err);
+			res.send("에러");
+		}
+		else {
+			var html = '';
+			for(var i in result) {
+				html += result[i].title + ', ';
+			}
+			res.send(html);
+		}
+	});
+	conn.end();
+});
+
+
+
+app.get("/test/", (req, res) => {
 	/*
 	var sql = " INSERT INTO book SET title=?, author=?, price=?, isbn=?, sdate=?, wdate=?, cnt=?, sellcnt=?, summary=?, img=? ";
 	var vals = ['별주부전', '거북이', '20000', '12-3456-7890', '2019-05-21', '2019-05-21 09:11:11', 0, 0, '거북이가 용왕을...', ''];
