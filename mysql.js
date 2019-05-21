@@ -65,7 +65,7 @@ app.post("/admin/:method", (req, res) => {
 		var sql = " INSERT INTO book SET title=?, author=?, price=?, isbn=?, sdate=?, cnt=?, sellcnt=?, wdate=?, img=?, summary=? ";
 		var values = [title, author, price, isbn, '2019-01-11', cnt, 0, wdate, '', summary];
 		conn.connect();
-		conn.query(sql, (err, result) => {
+		conn.query(sql, values, (err, result) => {
 			if(err) {
 				res.send("에러");
 				console.log(err);
