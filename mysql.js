@@ -28,37 +28,35 @@ app.get(["/book", "/book/:page"], (req, res) => {
 	var pageTotal = 0;	// 총 페이지 수
 	var page = req.params.page;
 	if(page === undefined) page = 1;
-
-	var sql = " SELECT count(id) FROM book ";
-	conn.query(sql, (err, result) => {
-		if(err) {
-			console.log(err);
-			res.send("에러");
-		}
-		else {
-			pageTotal = result[0];
-			res.send(pageTotal);
-		}
-	});
-	/*
-	var sql = " SELECT * FROM book ORDER BY id DESC LIMIT 0, 3 ";
+	var pageStart = (page - 1) * pageCnt;
+	var sql = " SELECT count(id) AS cnt FROM book ";
 	conn.query(sql, (err, result, field) => {
 		if(err) {
 			console.log(err);
 			res.send("에러");
 		}
 		else {
-			var vals = {
-				cssName: "book",
-				jsName: "book",
-				smTit: "도서 목록 리스트",
-				items: result
-			}
-			console.log(result);
-			res.render('book_list', vals);
+			rows = result[0].cnt;
+			pageTotal = Math.ceil(rows/pageCnt);
+			var sql = ` SELECT * FROM book ORDER BY id DESC LIMIT ${pageStart}, ${pageCnt} `;
+			conn.query(sql, (err, result, field) => {
+				if(err) {
+					console.log(err);
+					res.send("에러");
+				}
+				else {
+					var vals = {
+						cssName: "book",
+						jsName: "book",
+						smTit: "도서 목록 리스트",
+						items: result
+					}
+					console.log(result);
+					res.render('book_list', vals);
+				}
+			});
 		}
 	});
-	*/
 });
 
 
