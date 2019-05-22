@@ -7,7 +7,7 @@ const db = require(path.join(__dirname, "mysql_conn"));
 const mysql = db.mysql;
 const conn = db.conn;
 
-const pageCnt = 5;		// 한페이지에 나타날 데이터 갯수
+const pageCnt = 3;		// 한페이지에 나타날 데이터 갯수
 const pageDiv = 3;		// 페이저 한셋트당 보여질 페이지 갯수
 
 // 서버실행
@@ -45,21 +45,35 @@ app.get(["/book", "/book/:page"], (req, res) => {
 					res.send("에러");
 				}
 				else {
+					var pageGrp = Math.floor((page - 1)/pageDiv);
+					var pageFirst = pageGrp * 3 + 1;
+					var pageArr = [];
+					for(let i=pageFirst; i<pageFirst+3; i++) {
+						if(i<=pageTotal) pageArr.push(i);
+						else break;
+					}
+					var pageLt = false;
+					if(pageGrp > 0) pageLt = true;
+					var pageLtNum = pageFirst - 1;
+					var lastGrp = Math.floor((pageTotal - 1)/pageDiv);
+					var pageRt = false;
+					if(lastGrp > pageGrp) pageRt = true;
+					var pageRtNum = pageFirst + pageDiv;
 					var vals = {
 						cssName: "book",
 						jsName: "book",
 						smTit: "도서 목록 리스트",
 						pages: {
 							pageActive: page,
-							pageLt: false,
-							pageLtNum: 0,
-							pageRt: true,
-							pageRtNum: 4,
-							pageArr: [1, 2, 3]
+							pageLt,
+							pageLtNum,
+							pageRt,
+							pageRtNum,
+							pageArr
 						},
 						items: result
 					}
-					console.log(result);
+					//console.log(result);
 					res.render('book_list', vals);
 				}
 			});
