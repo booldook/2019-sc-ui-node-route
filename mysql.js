@@ -3,12 +3,20 @@ const express = require('express');
 const app = express();
 const path = require("path");
 const bodyParser = require('body-parser');
-const db = require(path.join(__dirname, "mysql_conn"));
+const db = require("./module/mysql_conn");
+const pager = require("./module/pager");
+const util = require("./module/util");
 const mysql = db.mysql;
 const conn = db.conn;
 
-const pageCnt = 3;		// 한페이지에 나타날 데이터 갯수
-const pageDiv = 3;		// 페이저 한셋트당 보여질 페이지 갯수
+const pageCnt = pager.pageCnt;
+const pageDiv = pager.pageDiv;
+
+/*
+const fns = require("./module/test");
+fns.fn("테스트");
+fns.fn2("테스트");
+*/
 
 // 서버실행
 app.listen(3000, () => {
@@ -28,7 +36,7 @@ app.get(["/book", "/book/:page"], (req, res) => {
 	var pageTotal = 0;	// 총 페이지 수
 	var page = req.params.page;
 	if(page === undefined) page = 1;
-	var pageStart = (page - 1) * pageCnt;
+	var pageStart = (page - 1) * pageCnt;		// sql LIMIT 의 첫번째 인자(시작 레코드 번호)
 	var sql = " SELECT count(id) AS cnt FROM book ";
 	conn.query(sql, (err, result, field) => {
 		if(err) {
@@ -45,33 +53,13 @@ app.get(["/book", "/book/:page"], (req, res) => {
 					res.send("에러");
 				}
 				else {
-					var pageGrp = Math.floor((page - 1)/pageDiv);
-					var pageFirst = pageGrp * 3 + 1;
-					var pageArr = [];
-					for(let i=pageFirst; i<pageFirst+3; i++) {
-						if(i<=pageTotal) pageArr.push(i);
-						else break;
-					}
-					var pageLt = false;
-					if(pageGrp > 0) pageLt = true;
-					var pageLtNum = pageFirst - 1;
-					var lastGrp = Math.floor((pageTotal - 1)/pageDiv);
-					var pageRt = false;
-					if(lastGrp > pageGrp) pageRt = true;
-					var pageRtNum = pageFirst + pageDiv;
+					var pages = pager.pagerCreate(page, pageTotal); 
 					var vals = {
 						cssName: "book",
 						jsName: "book",
 						smTit: "도서 목록 리스트",
-						pages: {
-							pageActive: page,
-							pageLt,
-							pageLtNum,
-							pageRt,
-							pageRtNum,
-							pageArr
-						},
-						items: result
+						items: result,
+						pages
 					}
 					//console.log(result);
 					res.render('book_list', vals);
@@ -113,7 +101,7 @@ app.post("/admin/:method", (req, res) => {
 		var isbn = req.body.isbn_0 + '-' + req.body.isbn_1 + '-' + req.body.isbn_2;
 		var sdate = req.body.sdate;
 		var cnt = req.body.cnt;
-		var wdate = localDate();
+		var wdate = util.localDate();
 		var summary = req.body.summary;
 		/*
 		var sql = `
@@ -137,23 +125,4 @@ app.post("/admin/:method", (req, res) => {
 		});
 	}
 });
-
-function zp(n) {
-	if(n < 10) return "0" + n;
-	else return n;
-}
-function localDate(val) {
-	var d = null;
-	var dt = '';
-	if(val === undefined) d = new Date();
-	else if(typeof val == "number") d = new Date(val);
-	else return 0;
-	dt += d.getFullYear() + '-';
-	dt += zp(d.getMonth() + 1) + '-';
-	dt += zp(d.getDate()) + ' ';
-	dt += zp(d.getHours()) + ':';
-	dt += zp(d.getMinutes()) + ':';
-	dt += zp(d.getSeconds());
-	return dt;
-}
 //conn.end();
