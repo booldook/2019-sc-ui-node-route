@@ -1,10 +1,14 @@
 // 서버구축
 const express = require('express');
 const app = express();
+const path = require("path");
 const bodyParser = require('body-parser');
-const db = require('./mysql_conn');
+const db = require(path.join(__dirname, "mysql_conn"));
 const mysql = db.mysql;
 const conn = db.conn;
+
+const pageCnt = 3;		// 한페이지에 나타날 데이터 갯수
+const pageDiv = 3;		// 페이저 한셋트당 보여질 페이지 갯수
 
 // 서버실행
 app.listen(3000, () => {
@@ -14,13 +18,30 @@ app.listen(3000, () => {
 // 초기설정
 app.locals.pretty = true;
 app.set("view engine", "pug");
-app.set("views", "./views");
+app.set("views", path.join(__dirname, "views"));
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 conn.connect();
 // ROUTER
-app.get("/book", (req, res) => {
-	var sql = " SELECT * FROM book ORDER BY id DESC ";
+app.get(["/book", "/book/:page"], (req, res) => {
+	var rows = 0;				// 총 데이터 갯수
+	var pageTotal = 0;	// 총 페이지 수
+	var page = req.params.page;
+	if(page === undefined) page = 1;
+
+	var sql = " SELECT count(id) FROM book ";
+	conn.query(sql, (err, result) => {
+		if(err) {
+			console.log(err);
+			res.send("에러");
+		}
+		else {
+			pageTotal = result[0];
+			res.send(pageTotal);
+		}
+	});
+	/*
+	var sql = " SELECT * FROM book ORDER BY id DESC LIMIT 0, 3 ";
 	conn.query(sql, (err, result, field) => {
 		if(err) {
 			console.log(err);
@@ -37,6 +58,7 @@ app.get("/book", (req, res) => {
 			res.render('book_list', vals);
 		}
 	});
+	*/
 });
 
 
