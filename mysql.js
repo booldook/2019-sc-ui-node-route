@@ -7,7 +7,7 @@ const db = require(path.join(__dirname, "mysql_conn"));
 const mysql = db.mysql;
 const conn = db.conn;
 
-const pageCnt = 3;		// 한페이지에 나타날 데이터 갯수
+const pageCnt = 5;		// 한페이지에 나타날 데이터 갯수
 const pageDiv = 3;		// 페이저 한셋트당 보여질 페이지 갯수
 
 // 서버실행
@@ -49,6 +49,14 @@ app.get(["/book", "/book/:page"], (req, res) => {
 						cssName: "book",
 						jsName: "book",
 						smTit: "도서 목록 리스트",
+						pages: {
+							pageActive: page,
+							pageLt: false,
+							pageLtNum: 0,
+							pageRt: true,
+							pageRtNum: 4,
+							pageArr: [1, 2, 3]
+						},
 						items: result
 					}
 					console.log(result);

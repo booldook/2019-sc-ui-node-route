@@ -1,0 +1,24 @@
+ul.pagination.mt.flex-ct
+	if pages.pageLt
+		li.page-item
+			a.page-link(href="/book/"+pages.pageLtNum)
+				i.fas.fa-caret-left
+	else
+		li.page-item.disabled
+			a.page-link(href="#")
+				i.fas.fa-caret-left
+	each i in pages.pageArr
+		if pages.pageActive == i
+			li.page-item.active
+				a.page-link(href="/book/"+i)= i
+		else
+			li.page-item
+				a.page-link(href="/book/"+i)= i
+	if pages.pageRt
+		li.page-item
+			a.page-link(href="/book/"+pages.pageRtNum)
+				i.fas.fa-caret-right
+	else
+		li.page-item.disabled
+			a.page-link(href="#")
+				i.fas.fa-caret-right

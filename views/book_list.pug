@@ -24,6 +24,8 @@ html
 							td=item.author
 							td=item.sdate
 							td.tr=item.price
+			include inc/pager.pug
+
 			//본문 종료
 			include inc/footer.pug
 		script(src=`/js/${jsName}.js`)
