@@ -3,6 +3,7 @@
 # Edit at https://www.gitignore.io/?templates=node
 
 mysql_conn.js
+mysql_pool.js
 webfonts/
 
 ### Node ###
