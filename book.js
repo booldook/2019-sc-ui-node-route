@@ -61,6 +61,7 @@ app.get(["/book", "/book/:page"], (req, res) => {
 							}
 							connect.release();
 							res.render('book_list', vals);
+							//res.send(vals);
 						}
 					});
 				});

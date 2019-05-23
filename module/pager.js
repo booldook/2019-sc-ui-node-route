@@ -1,4 +1,4 @@
-const pageCnt = 3;		// 한페이지에 나타날 데이터 갯수
+const pageCnt = 10;		// 한페이지에 나타날 데이터 갯수
 const pageDiv = 3;		// 페이저 한셋트당 보여질 페이지 갯수
 
 const pagerCreate = (page, pageTotal) => {
