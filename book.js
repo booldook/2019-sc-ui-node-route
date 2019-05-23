@@ -50,7 +50,8 @@ app.get(["/book", "/book/:page"], (req, res) => {
 							res.send("에러");
 						}
 						else {
-							var pages = pager.pagerCreate(page, pageTotal); 
+							var pages = pager.pagerCreate(page, pageTotal);
+							//for(let i in result) result[i].price = util.vComma(result[i].price)+"원";
 							var vals = {
 								cssName: "book",
 								jsName: "book",

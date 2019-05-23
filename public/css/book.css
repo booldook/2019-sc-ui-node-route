@@ -1,3 +1,21 @@
 .navis {display: flex;}
 .navis > .navi {flex: 1 1 25%; padding: 0.5rem; background: #eee; border:1px solid #999; margin-right: -1px;}
 .navi_sel {background-color: #333 !important; color: #fff; font-weight: bold;}
+
+#book-list th:nth-child(1), 
+#book-list td:nth-child(1) {width: 10%;}
+#book-list th:nth-child(2), 
+#book-list td:nth-child(2) {width: 45%;}
+#book-list th:nth-child(3), 
+#book-list td:nth-child(3) {width: 15%;}
+#book-list th:nth-child(4), 
+#book-list td:nth-child(4) {width: 15%;}
+#book-list th:nth-child(5), 
+#book-list td:nth-child(5) {width: 15%;}
+
+@media screen and (max-width: 768px) {
+	#book-list th:nth-child(3), 
+	#book-list td:nth-child(3) {display: none;}
+	#book-list th:nth-child(4), 
+	#book-list td:nth-child(4) {display: none;}
+}
