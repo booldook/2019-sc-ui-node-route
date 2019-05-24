@@ -20,5 +20,19 @@ $(".dals").click(function(e){
 
 $(".click-tit").click(modalOpen);
 function modalOpen() {
-	$(".dal-bg").css("display", "flex");
+	var id = $(this).prev().text();
+	$.ajax({
+		type: "get",
+		url: "/detail/"+id,
+		dataType: "json",
+		success: function (res) {
+			console.log(res);
+			$(".dal-tit").html(res.title);
+			$(".dal-author").html(res.author);
+			$(".dal-isbn").html(res.isbn);
+			$(".dal-price").html(vComma(res.price)+"원");
+			$(".dal-summary").html(res.summary);
+			$(".dal-bg").css("display", "flex");
+		}
+	});
 }

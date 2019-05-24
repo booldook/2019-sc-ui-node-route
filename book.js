@@ -98,3 +98,20 @@ app.post("/admin/:method", (req, res) => {
 		});
 	}
 });
+
+app.get("/detail/:id", (req, res) => {
+	var id = req.params.id;
+	conn.getConnection((err, connect) => {
+		var sql = ` SELECT * FROM book WHERE id=${id} `;
+		connect.query(sql, (err, result) => {
+			if(err) {
+				connect.release();
+				console.log(err);
+			}
+			else {
+				connect.release();
+				res.send(result[0]);
+			}
+		});
+	});
+});
