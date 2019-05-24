@@ -3,11 +3,21 @@
 .navi_sel {background-color: #333 !important; color: #fff; font-weight: bold;}
 
 /* Modal */
-.dal-bg {position: fixed; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; top: 0; left: 0; background-color: rgba(0,0,0,0.85);}
-.dals {position: relative; width: 80%; max-width: 600px; background-color: #fff; border-radius: 8px; 
-	border: 1px solid #999;}
-.dals > .bt-close {position: absolute;}
-
+.dal-bg {position: fixed; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; top: 0; left: 0; background-color: rgba(0,0,0,0.85); z-index: 9;}
+.dals {position: relative; width: 80%; max-width: 600px; background-color: #fff; border-radius: 8px; border: 1px solid #999; padding: 2rem; z-index: 10;}
+.dals > .bt-close {position: absolute; top: 4px; right: 8px; font-size: 2rem; line-height: 2rem;}
+.dal-tit {font-size: 1.5rem; font-weight: bold;}
+.dal-conts {margin: 1rem 0;}
+.dal-conts > div {width: 40%; float: left; border: 1px solid #eee;}
+.dal-conts > ul {width: 48%; float: right;}
+.dal-conts > ul > li {padding: 8px 0;}
+.dal-conts .tit {font-weight: bold; color: #555; width: 80px; display: inline-block;}
+.dal-conts .cont {color: #111;}
+.dal-price .cont {font-size: 1.25rem; color: rgb(8, 33, 80); font-weight: bold;}
+.dal-summary {border: 1px solid #999; overflow-y: auto; padding: 16px; height: 160px; text-align: justify;}
+.dal-bts {margin: 16px 0;}
+.dal-bts > :first-child {margin-right: 8px;}
+.dal-bts > :last-child {margin-right: 8px;}
 
 #book-list th:nth-child(1), 
 #book-list td:nth-child(1) {width: 10%;}
