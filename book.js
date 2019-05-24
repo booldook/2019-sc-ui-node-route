@@ -128,7 +128,7 @@ app.get("/detail/:id", (req, res) => {
 app.get("/remove/:id", (req, res) => {
 	var id = req.params.id;
 	conn.getConnection((err, connect) => {
-		var sql = ` DELETE FROM book WHERE id=${id} `;
+		var sql = ` DELETE FROM book WHERE id='${id}' `;
 		connect.query(sql, (err, result) => {
 			if(err) {
 				connect.release();

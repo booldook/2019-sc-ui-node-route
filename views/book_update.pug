@@ -1,0 +1,53 @@
+doctype html
+html
+	head
+		include inc/header.pug
+	body
+		.container
+			include inc/nav.pug
+			//본문 시작
+			form(action='/admin/up', method='post', name='book_in')
+				input(type='hidden', name='id', value=`${rs.id}`)
+				table.table.table-bordered.table-hover
+					tbody
+						tr
+							td 책제목
+							td
+								input.form-control(type='text', name='title', placeholder='책제목을 입력하세요.', value=`${rs.title}`)
+						tr
+							td 저자
+							td.form-inline
+								input.form-control(type='text', name='author', placeholder='저자를 입력하세요.', value=`${rs.author}`)
+						tr
+							td 판매금액
+							td.form-inline
+								input.form-control(type='number', name='price', value=`${rs.price}`)
+								| 원
+						tr
+							td ISBN
+							td.form-inline
+								input.form-control.in100(type='number', name='isbn_0', value=`${rs.isbn[0]}`, maxlength='2')
+								|  -
+								input.form-control.in100(type='number', name='isbn_1', value=`${rs.isbn[1]}`, maxlength='4')
+								|  -
+								input.form-control.in100(type='number', name='isbn_2', value=`${rs.isbn[2]}`, maxlength='4')
+						tr
+							td 발행일
+							td.form-inline
+								input#sdate.form-control(type='text', name='sdate', value=`${rs.sdate}`)
+						tr
+							td 입고갯수
+							td.form-inline
+								input.form-control.in100(type='number', name='cnt', value=`${rs.cnt}`)
+								span.red.pl * 입력갯수를 0으로 지정하시면 재고량 체크를 하지 않습니다.
+						tr
+							td 요약정보
+							td
+								textarea.form-control(name='summary', value=`${rs.summary}`)
+				.tc.pa
+					button#bt_save.btn.btn-primary(type='button') 저장
+					button.btn.btn-danger(type='reset') 재작성
+
+			//본문 종료
+			include inc/footer.pug
+		script(src=`/js/${jsName}.js`)
