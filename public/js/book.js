@@ -50,6 +50,7 @@ function bookRev() {
 
 $("#bt-update").click(bookChg);
 function bookChg() {
-
+	var id = $(this).data("id");
+	location.href = "/update/"+id;
 }
 //$("#bt-cart").click();

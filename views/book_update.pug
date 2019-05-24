@@ -1,10 +1,15 @@
+//- cssName, jsName, smTit
 doctype html
 html
 	head
 		include inc/header.pug
+		link(rel="stylesheet" href="/jquery-ui-date/jquery-ui.min.css")
+		script(src="/jquery-ui-date/jquery-ui.min.js")
+		script(src="/js/datepicker.js")
 	body
+		include inc/navs.pug
 		.container
-			include inc/nav.pug
+			include inc/title.pug
 			//본문 시작
 			form(action='/admin/up', method='post', name='book_in')
 				input(type='hidden', name='id', value=`${rs.id}`)
@@ -43,7 +48,7 @@ html
 						tr
 							td 요약정보
 							td
-								textarea.form-control(name='summary', value=`${rs.summary}`)
+								textarea.form-control(name='summary')=rs.summary
 				.tc.pa
 					button#bt_save.btn.btn-primary(type='button') 저장
 					button.btn.btn-danger(type='reset') 재작성

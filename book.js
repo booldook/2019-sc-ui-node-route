@@ -72,7 +72,7 @@ app.get(["/book", "/book/:page"], (req, res) => {
 	});
 });
 
-// 도서 등록
+// 도서 등록 및 수정
 app.post("/admin/:method", (req, res) => {
 	var method = req.params.method;
 	var id = req.body.id;
@@ -137,6 +137,31 @@ app.get("/remove/:id", (req, res) => {
 			else {
 				connect.release();
 				res.redirect("/book");
+			}
+		});
+	});
+});
+
+// 도서 수정 UI
+app.get("/update/:id", (req, res) => {
+	var id = req.params.id;
+	conn.getConnection((err, connect) => {
+		var sql = ` SELECT * FROM book WHERE id='${id}' `;
+		connect.query(sql, (err, result) => {
+			if(err) {
+				connect.release();
+				console.log(err);
+			}
+			else {
+				var vals = {
+					cssName: "book_in",
+					jsName: "book_in",
+					smTit: "도서 정보 수정",
+					rs: result[0]
+				}
+				vals.rs.isbn = vals.rs.isbn.split("-");
+				res.render('book_update', vals);
+				//res.send(vals);
 			}
 		});
 	});
