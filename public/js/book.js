@@ -32,7 +32,24 @@ function modalOpen() {
 			$(".dal-isbn").html(res.isbn);
 			$(".dal-price").html(vComma(res.price)+"원");
 			$(".dal-summary").html(res.summary);
+			$("#bt-cart").attr("data-id", id);
+			$("#bt-remove").attr("data-id", id);
+			$("#bt-update").attr("data-id", id);
 			$(".dal-bg").css("display", "flex");
 		}
 	});
 }
+
+$("#bt-remove").click(bookRev);
+function bookRev() {
+	if(confirm("진심 삭제?")) {
+		var id = $(this).data("id");
+		location.href = "/remove/"+id;
+	}
+}
+
+$("#bt-update").click(bookChg);
+function bookChg() {
+
+}
+//$("#bt-cart").click();
