@@ -2,6 +2,13 @@
 .navis > .navi {flex: 1 1 25%; padding: 0.5rem; background: #eee; border:1px solid #999; margin-right: -1px;}
 .navi_sel {background-color: #333 !important; color: #fff; font-weight: bold;}
 
+/* Modal */
+.dal-bg {position: fixed; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; top: 0; left: 0; background-color: rgba(0,0,0,0.85);}
+.dals {position: relative; width: 80%; max-width: 600px; background-color: #fff; border-radius: 8px; 
+	border: 1px solid #999;}
+.dals > .bt-close {position: absolute;}
+
+
 #book-list th:nth-child(1), 
 #book-list td:nth-child(1) {width: 10%;}
 #book-list th:nth-child(2), 
