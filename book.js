@@ -26,6 +26,7 @@ app.use("/", express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 
 // ROUTER
+// 도서 리스트
 app.get(["/book", "/book/:page"], (req, res) => {
 	var rows = 0;				// 총 데이터 갯수
 	var pageTotal = 0;	// 총 페이지 수
@@ -71,34 +72,41 @@ app.get(["/book", "/book/:page"], (req, res) => {
 	});
 });
 
+// 도서 등록
 app.post("/admin/:method", (req, res) => {
 	var method = req.params.method;
+	var id = req.body.id;
+	var title = req.body.title;
+	var author = req.body.author;
+	var price = req.body.price;
+	var isbn = req.body.isbn_0 + '-' + req.body.isbn_1 + '-' + req.body.isbn_2;
+	var sdate = req.body.sdate;
+	var cnt = req.body.cnt;
+	var wdate = util.localDate();
+	var summary = req.body.summary;
+	var values = [title, author, price, isbn, sdate, cnt, 0, wdate, '', summary];
+	var sql = '';
 	if(method == "in") {
-		var title = req.body.title;
-		var author = req.body.author;
-		var price = req.body.price;
-		var isbn = req.body.isbn_0 + '-' + req.body.isbn_1 + '-' + req.body.isbn_2;
-		var sdate = req.body.sdate;
-		var cnt = req.body.cnt;
-		var wdate = util.localDate();
-		var summary = req.body.summary;
-		conn.getConnection((err, connect) => {
-			var sql = " INSERT INTO book SET title=?, author=?, price=?, isbn=?, sdate=?, cnt=?, sellcnt=?, wdate=?, img=?, summary=? ";
-			var values = [title, author, price, isbn, sdate, cnt, 0, wdate, '', summary];
-			connect.query(sql, values, (err, result) => {
-				if(err) {
-					connect.release();
-					res.send("에러");
-				}
-				else {
-					connect.release();
-					res.redirect("/book");
-				}
-			});
-		});
+		sql = " INSERT INTO book SET title=?, author=?, price=?, isbn=?, sdate=?, cnt=?, sellcnt=?, wdate=?, img=?, summary=? ";
 	}
+	else if(method == "up") {
+		sql = " UPDATE book SET title=?, author=?, price=?, isbn=?, sdate=?, cnt=?, sellcnt=?, wdate=?, img=?, summary=? WHERE id="+id;
+	}
+	conn.getConnection((err, connect) => {
+		connect.query(sql, values, (err, result) => {
+			if(err) {
+				connect.release();
+				res.send("에러");
+			}
+			else {
+				connect.release();
+				res.redirect("/book");
+			}
+		});
+	});
 });
 
+// 도서상세보기 - modal
 app.get("/detail/:id", (req, res) => {
 	var id = req.params.id;
 	conn.getConnection((err, connect) => {
@@ -111,6 +119,24 @@ app.get("/detail/:id", (req, res) => {
 			else {
 				connect.release();
 				res.send(result[0]);
+			}
+		});
+	});
+});
+
+// 도서 삭제
+app.get("/remove/:id", (req, res) => {
+	var id = req.params.id;
+	conn.getConnection((err, connect) => {
+		var sql = ` DELETE FROM book WHERE id=${id} `;
+		connect.query(sql, (err, result) => {
+			if(err) {
+				connect.release();
+				console.log(err);
+			}
+			else {
+				connect.release();
+				res.redirect("/book");
 			}
 		});
 	});
