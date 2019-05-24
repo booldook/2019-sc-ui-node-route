@@ -19,9 +19,9 @@
 			<li class="nav-item">
 				<a class="nav-link text-light" href="/book">도서목록보기</a>
 			</li>
-			<li class="nav-item">
+			<!-- <li class="nav-item">
 				<a class="nav-link text-light" href="/html/book_li.html">도서목록보기(AJAX)</a>
-			</li>
+			</li> -->
 		</ul>
 	</nav>
 	<div class="container mt">
@@ -65,29 +65,41 @@
 						<td>개발</td>
 						<td>
 							1. app.js (실행파일) 생성 - 노드는 보통 하나의 파일을 쓴다.<br>
-							2. static(정적html, css 등)폴더 역할을 할 public 폴더를 생성<br>
-							- app.use("/", express.static("public"));
-							- app.use("/info", express.static("info"));
-							<br>
-							3. express 나 사용 할 미들웨어를 import(require) 시킨다
+							2. express 나 사용 할 미들웨어를 import(require) 시킨다<br>
+							3. import 된 express를 app변수에 실행시켜서 저장한다.<br>
+							4. static(정적html, css 등)폴더 역할을 할 public 폴더를 생성<br>
+							- app.use("/", express.static("public"));<br>
+							- app.use("/uploads", express.static("public/uploads"));<br>
+							5. 각종 필요한 모듈을 import(require) 시킨다.<br>
+							- bodyParser: POST 요청문에 대한 해석<br>
+							- mysql: MySQL Database 접속 및 쿼리<br>
+							- ./mysql_conn 혹은 ./mysql_pool: 내가 생성한 MySQL 접속 모듈<br>
+							<span class="red">(비밀번호가 포함되어 있어 .gitignore에 꼭! 등록해야한다.)</span>
 							<div class="bor-a pa ma">
-								const express = require('express'); (express 모듈을 import)<br>
-								const <span class="bold blue">app</span> = express();<br>
-								const bodyParser = require('body-parser');<br>
-								const db = require('./mysql_conn');<br>
-								const mysql = db.mysql;<br>
-								const conn = db.conn;
+								2: const express = require('express'); (express 모듈을 import)<br>
+								3: const <span class="bold blue">app</span> = express();<br>
+								5: const mysql = require('mysql');<br>
+								5: const bodyParser = require('body-parser');<br>
+								5: const db = require('./mysql_conn');<br>
+								5: const mysql = db.mysql;<br>
+								5: const conn = db.conn;<br>
+								4: app.use("/", express.static("public"));<br>
+								4: app.use("/uploads", express.static("public/uploads"));
 							</div>
-							4. 생성된 <span class="bold blue">app</span>을 초기화 한다
+							5. 생성된 <span class="bold blue">app</span>을 실행 한다(port:3000)
 							<div class="bor-a pa ma">
 <pre>
 app.listen(3000, ()=> {
   console.log("서버시작");
 });
 </pre>
-								app.use("/", express.static("public"));	(정적 폴더 지정)<br>
-								app.set("view engine", "pug");	(view template engine 지정)<br>
-								app.set("views", "./views"); (view engine이 사용한 template 폴더 지정)
+							</div>
+							6. View를 디자인 할 view engine을 선택하여(pug, ejs) 셋팅한다.
+							<div class="bor-a pa ma">
+<pre>
+app.set("view engine", "pug");	(view template engine 지정)
+app.set("views", "./views"); (view engine이 사용한 template 폴더 지정)
+</pre>
 							</div>
 							5. Route 개발 (get)
 							<div class="bor-a pa ma">
@@ -107,7 +119,7 @@ app.get("/book/:page", (req, res) => {
 							<div class="bor-a pa ma">
 <pre>
 const <b class="blue">bodyParser</b> = require('body-parser');
-app.use(bodyParser.urlencoded({ extended:false }));
+<b class="blue">app.use(bodyParser.urlencoded({ extended:false }));</b> //위에서 실행한 body-parser를 초기화
 app.<b class="blue">post</b>("/book/", (req, res) => {
   //클라이언트의 요청사항
   var id = req.<b class="blue">body</b>.id;

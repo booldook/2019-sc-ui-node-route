@@ -9,6 +9,7 @@ const util = require("./module/util");
 const mysql = db.mysql;
 const conn = db.conn;
 
+
 const pageCnt = pager.pageCnt;
 const pageDiv = pager.pageDiv;
 
@@ -21,7 +22,7 @@ app.listen(3000, () => {
 app.locals.pretty = true;
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
-app.use(express.static('public'));
+app.use("/", express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 
 // ROUTER
