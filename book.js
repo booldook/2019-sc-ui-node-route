@@ -11,7 +11,10 @@ const mysql = db.mysql;
 const conn = db.conn;
 
 // multer 초기설정
-const upload = mt.multer({storage: mt.storage});
+const upload = mt.multer({
+	storage: mt.storage, 
+	fileFilter: mt.chkImgExt
+});
 
 // pager 초기설정
 const pageCnt = pager.pageCnt;
