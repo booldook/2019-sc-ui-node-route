@@ -6,40 +6,12 @@ const bodyParser = require('body-parser');
 const db = require("./module/mysql_pool");
 const pager = require("./module/pager");
 const util = require("./module/util");
-const fs = require("fs");
-const multer = require("multer");
+const mt = require('./module/multer_fn');
 const mysql = db.mysql;
 const conn = db.conn;
 
 // multer 초기설정
-const storage = multer.diskStorage({
-	destination: (req, res, cb) => {
-		var d = new Date();
-		var getMonth = (month) => {
-			if(month + 1 < 10) return "0"+(month+1);
-			else return month + 1;
-		};
-		var dir = d.getFullYear().toString().substr(2) + getMonth(d.getMonth());
-		var path = "./public/uploads/"+dir+"/";
-		if(!fs.existsSync(path)) {
-			fs.mkdir(path, (err) => {
-				if(err) res.status(500).send("Internal Server Error");
-				else cb(null, path);
-			});
-		}
-		else cb(null, path);
-	},
-	filename: (req, file, cb) => {
-		var d = new Date();
-		var getMonth = (month) => {
-			if(month + 1 < 10) return "0"+(month+1);
-			else return month + 1;
-		};
-		var dir = d.getFullYear().toString().substr(2) + getMonth(d.getMonth());
-		cb(null, dir+"_"+Date.now()+"_"+file.originalname);
-	}
-});
-const upload = multer({storage: storage});
+const upload = mt.multer({storage: mt.storage});
 
 // pager 초기설정
 const pageCnt = pager.pageCnt;
