@@ -4,14 +4,12 @@ const allowImgExt = ['jpg', 'jpeg', 'gif', 'png'];
 const allowFileExt = ['jpg', 'jpeg', 'gif', 'png', 'hwp', 'xls', 'xlsx', 'ppt', 'pptx', 'doc', 'docx', 'pdf', 'zip'];
 
 const chkImgExt = (req, file, cb) => {
-	var files = splitName(file.originalname);
-	if(allowImgExt.indexOf(files.ext) > -1) cb(null, true);
+	if(allowImgExt.indexOf(splitName(file.originalname).ext) > -1) cb(null, true);
 	else cb(null, false);
 }
 
 const chkFileExt = (req, file, cb) => {
-	var files = splitName(file.originalname);
-	if(allowFileExt.indexOf(files.ext) > -1) cb(null, true);
+	if(allowFileExt.indexOf(splitName(file.originalname).ext) > -1) cb(null, true);
 	else cb(null, false);
 }
 

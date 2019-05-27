@@ -91,13 +91,13 @@ app.post("/admin/:method", upload.single("img"), (req, res) => {
 	var cnt = req.body.cnt;
 	var wdate = util.localDate();
 	var summary = req.body.summary;
-	var values = [title, author, price, isbn, sdate, cnt, 0, wdate, '', summary];
+	var values = [title, author, price, isbn, sdate, cnt, 0, wdate, req.file.filename, req.file.originalname, summary];
 	var sql = '';
 	if(method == "in") {
-		sql = " INSERT INTO book SET title=?, author=?, price=?, isbn=?, sdate=?, cnt=?, sellcnt=?, wdate=?, img=?, summary=? ";
+		sql = " INSERT INTO book SET title=?, author=?, price=?, isbn=?, sdate=?, cnt=?, sellcnt=?, wdate=?, img=?, imgname=?, summary=? ";
 	}
 	else if(method == "up") {
-		sql = " UPDATE book SET title=?, author=?, price=?, isbn=?, sdate=?, cnt=?, sellcnt=?, wdate=?, img=?, summary=? WHERE id="+id;
+		sql = " UPDATE book SET title=?, author=?, price=?, isbn=?, sdate=?, cnt=?, sellcnt=?, wdate=?, img=?, imgname=?, summary=? WHERE id="+id;
 	}
 	conn.getConnection((err, connect) => {
 		connect.query(sql, values, (err, result) => {

@@ -27,6 +27,9 @@ function modalOpen() {
 		dataType: "json",
 		success: function (res) {
 			console.log(res);
+			var dir = "/uploads/"+res.img.substr(0, 4)+"/";
+			var src = dir + res.img;
+			$(".dal-img").attr("src", src);
 			$(".dal-tit").html(res.title);
 			$(".dal-author").html(res.author);
 			$(".dal-isbn").html(res.isbn);
