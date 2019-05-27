@@ -19,23 +19,18 @@
 .dal-bts > :first-child {margin-right: 8px;}
 .dal-bts > :last-child {margin-right: 8px;}
 
-#book-list th:nth-child(1), 
 #book-list td:nth-child(1) {width: 10%;}
-#book-list th:nth-child(2),
 #book-list td:nth-child(2) {width: 68px;}
-#book-list th:nth-child(4), 
 #book-list td:nth-child(4) {width: 15%;}
-#book-list th:nth-child(5), 
 #book-list td:nth-child(5) {width: 15%;}
-#book-list th:nth-child(6), 
 #book-list td:nth-child(6) {width: 15%;}
 
-.img_li {width: 60px; margin: 4px;}
-.img_vi {width: 80px; margin-bottom:10px;};
+.img_li {width: 60px;}
+.img_vi {width: 80px; margin-bottom:10px;}
 
 @media screen and (max-width: 768px) {
-	#book-list th:nth-child(4), 
+	#book-list th:nth-child(3), 
 	#book-list td:nth-child(4) {display: none;}
-	#book-list th:nth-child(5), 
+	#book-list th:nth-child(4), 
 	#book-list td:nth-child(5) {display: none;}
 }

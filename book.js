@@ -61,6 +61,10 @@ app.get(["/book", "/book/:page"], (req, res) => {
 						else {
 							var pages = pager.pagerCreate(page, pageTotal);
 							//for(let i in result) result[i].price = util.vComma(result[i].price)+"원";
+							for(var i in result) {
+								if(result[i].img != "" && result[i].img != null) result[i].img = '/uploads/'+result[i].img.substr(0, 4)+'/'+result[i].img;
+								else result[i].img = '/img/noimage.gif';
+							}
 							var vals = {
 								cssName: "book",
 								jsName: "book",
@@ -158,7 +162,7 @@ app.get("/update/:id", (req, res) => {
 	conn.getConnection((err, connect) => {
 		var sql = ` SELECT * FROM book WHERE id='${id}' `;
 		connect.query(sql, (err, result) => {
-			if(result[0].img != "") result[0].img = '/uploads/'+result[0].img.substr(0, 4)+'/'+result[0].img;
+			if(result[0].img != "" && result[0].img != null) result[0].img = '/uploads/'+result[0].img.substr(0, 4)+'/'+result[0].img;
 			if(err) {
 				connect.release();
 				console.log(err);
