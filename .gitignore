@@ -5,6 +5,7 @@
 mysql_conn.js
 mysql_pool.js
 webfonts/
+uploads/
 
 ### Node ###
 # Logs
