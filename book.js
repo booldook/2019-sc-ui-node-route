@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
 			if(month + 1 < 10) return "0"+(month+1);
 			else return month + 1;
 		};
-		var dir = d.getFullYear().substr(2) + getMonth(d.getMonth());
+		var dir = d.getFullYear().toString().substr(2) + getMonth(d.getMonth());
 		var path = "./public/uploads/"+dir+"/";
 		if(!fs.existsSync(path)) {
 			fs.mkdir(path, (err) => {
@@ -27,9 +27,16 @@ const storage = multer.diskStorage({
 				else cb(null, path);
 			});
 		}
+		else cb(null, path);
 	},
 	filename: (req, file, cb) => {
-		cb(null, Date.now() + "_" + file.originalname);
+		var d = new Date();
+		var getMonth = (month) => {
+			if(month + 1 < 10) return "0"+(month+1);
+			else return month + 1;
+		};
+		var dir = d.getFullYear().toString().substr(2) + getMonth(d.getMonth());
+		cb(null, dir+"_"+Date.now()+"_"+file.originalname);
 	}
 });
 const upload = multer({storage: storage});
