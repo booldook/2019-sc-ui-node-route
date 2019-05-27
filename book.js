@@ -6,9 +6,11 @@ const bodyParser = require('body-parser');
 const db = require("./module/mysql_pool");
 const pager = require("./module/pager");
 const util = require("./module/util");
+const fs = require("fs");
+const multer = require("multer");
 const mysql = db.mysql;
 const conn = db.conn;
-
+const upload = multer({dest: "./public/uploads"});
 
 const pageCnt = pager.pageCnt;
 const pageDiv = pager.pageDiv;
@@ -23,6 +25,7 @@ app.locals.pretty = true;
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 app.use("/", express.static('public'));
+app.use("/uploads", express.static("public/uploads"));
 app.use(bodyParser.urlencoded({extended: false}));
 
 // ROUTER
@@ -73,7 +76,7 @@ app.get(["/book", "/book/:page"], (req, res) => {
 });
 
 // 도서 등록 및 수정
-app.post("/admin/:method", (req, res) => {
+app.post("/admin/:method", upload.single("img"), (req, res) => {
 	var method = req.params.method;
 	var id = req.body.id;
 	var title = req.body.title;

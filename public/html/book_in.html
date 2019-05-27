@@ -35,7 +35,7 @@
 				<small>관리자 도서 입력 시스템</small>
 			</h1>
 		</div>
-		<form action="/admin/in" method="post" name="book_in">
+		<form action="/admin/in" method="post" name="book_in" enctype="multipart/form-data">
 			<table class="table table-bordered table-hover">
 				<tbody>
 					<tr>
@@ -81,6 +81,12 @@
 						<td>요약정보</td>
 						<td>
 							<textarea name="summary" class="form-control"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>첨부파일</td>
+						<td>
+							<input type="file" name="img" class="form-control in200">
 						</td>
 					</tr>
 				</tbody>
