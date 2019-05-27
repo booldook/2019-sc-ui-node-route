@@ -10,8 +10,31 @@ const fs = require("fs");
 const multer = require("multer");
 const mysql = db.mysql;
 const conn = db.conn;
-const upload = multer({dest: "./public/uploads"});
 
+// multer 초기설정
+const storage = multer.diskStorage({
+	destination: (req, res, cb) => {
+		var d = new Date();
+		var getMonth = (month) => {
+			if(month + 1 < 10) return "0"+(month+1);
+			else return month + 1;
+		};
+		var dir = d.getFullYear().substr(2) + getMonth(d.getMonth());
+		var path = "./public/uploads/"+dir+"/";
+		if(!fs.existsSync(path)) {
+			fs.mkdir(path, (err) => {
+				if(err) res.status(500).send("Internal Server Error");
+				else cb(null, path);
+			});
+		}
+	},
+	filename: (req, file, cb) => {
+		cb(null, Date.now() + "_" + file.originalname);
+	}
+});
+const upload = multer({storage: storage});
+
+// pager 초기설정
 const pageCnt = pager.pageCnt;
 const pageDiv = pager.pageDiv;
 
@@ -25,7 +48,6 @@ app.locals.pretty = true;
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 app.use("/", express.static('public'));
-app.use("/uploads", express.static("public/uploads"));
 app.use(bodyParser.urlencoded({extended: false}));
 
 // ROUTER
