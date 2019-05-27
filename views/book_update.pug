@@ -53,7 +53,7 @@ html
 							td 첨부파일
 							td
 								if rs.img != ''
-									img(style='width:80px;margin-bottom:10px;', src=`${rs.img}`)
+									img.img_vi(src=`${rs.img}`)
 								input.form-control.in200(type='file', name='img')
 				.tc.pa
 					button#bt_save.btn.btn-primary(type='button') 저장

@@ -12,7 +12,7 @@ html
 				thead.bg-dark.text-light
 					tr
 						th 번호
-						th 제목
+						th(colspan="2") 제목
 						th 저자
 						th 발행일
 						th 판매가
@@ -20,6 +20,8 @@ html
 					each item in items
 						tr
 							td=item.id
+							td
+								img.img_li(src=`${item.imgPath}`)
 							td.tl.click-tit=item.title
 							td=item.author
 							td=item.sdate
