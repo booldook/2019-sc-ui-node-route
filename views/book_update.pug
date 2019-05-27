@@ -11,7 +11,7 @@ html
 		.container
 			include inc/title.pug
 			//본문 시작
-			form(action='/admin/up', method='post', name='book_in')
+			form(action='/admin/up', method='post', name='book_in', enctype='multipart/form-data')
 				input(type='hidden', name='id', value=`${rs.id}`)
 				table.table.table-bordered.table-hover
 					tbody
@@ -49,6 +49,11 @@ html
 							td 요약정보
 							td
 								textarea.form-control(name='summary')=rs.summary
+						tr
+							td 첨부파일
+							td
+								img(style='width:80px;margin-bottom:10px;', src=`${rs.img}`)
+								input.form-control.in200(type='file', name='img')
 				.tc.pa
 					button#bt_save.btn.btn-primary(type='button') 저장
 					button.btn.btn-danger(type='reset') 재작성

@@ -91,7 +91,12 @@ app.post("/admin/:method", upload.single("img"), (req, res) => {
 	var cnt = req.body.cnt;
 	var wdate = util.localDate();
 	var summary = req.body.summary;
-	var values = [title, author, price, isbn, sdate, cnt, 0, wdate, req.file.filename, req.file.originalname, summary];
+	if(req.file != undefined) {
+		var values = [title, author, price, isbn, sdate, cnt, 0, wdate, req.file.filename, req.file.originalname, summary];
+	}
+	else {
+		var values = [title, author, price, isbn, sdate, cnt, 0, wdate, '', '', summary];
+	}
 	var sql = '';
 	if(method == "in") {
 		sql = " INSERT INTO book SET title=?, author=?, price=?, isbn=?, sdate=?, cnt=?, sellcnt=?, wdate=?, img=?, imgname=?, summary=? ";
@@ -155,6 +160,7 @@ app.get("/update/:id", (req, res) => {
 	conn.getConnection((err, connect) => {
 		var sql = ` SELECT * FROM book WHERE id='${id}' `;
 		connect.query(sql, (err, result) => {
+			result[0].img = '/uploads/'+result[0].img.substr(0, 4)+'/'+result[0].img;
 			if(err) {
 				connect.release();
 				console.log(err);
