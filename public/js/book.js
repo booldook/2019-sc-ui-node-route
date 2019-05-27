@@ -20,7 +20,7 @@ $(".dals").click(function(e){
 
 $(".click-tit").click(modalOpen);
 function modalOpen() {
-	var id = $(this).prev().text();
+	var id = $(this).prev().prev().text();
 	$.ajax({
 		type: "get",
 		url: "/detail/"+id,
